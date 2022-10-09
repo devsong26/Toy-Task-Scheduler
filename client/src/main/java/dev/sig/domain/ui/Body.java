@@ -1,13 +1,10 @@
 package dev.sig.domain.ui;
 
+import dev.sig.framework.annotation.Component;
+
+@Component(permanent = false)
 public class Body {
 
-    private static final Body INSTANCE = new Body();
-
     private Body(){}
-
-    public static Body getInstance(){
-        return INSTANCE;
-    }
 
 }

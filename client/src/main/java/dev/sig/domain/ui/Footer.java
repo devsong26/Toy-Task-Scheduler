@@ -1,13 +1,10 @@
 package dev.sig.domain.ui;
 
+import dev.sig.framework.annotation.Component;
+
+@Component(permanent = false)
 public class Footer {
 
-    private static final Footer INSTANCE = new Footer();
-
     private Footer(){}
-
-    public static Footer getInstance(){
-        return INSTANCE;
-    }
 
 }

@@ -1,10 +1,13 @@
 package dev.sig.framework.container;
 
+import dev.sig.framework.utils.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,7 +15,14 @@ public class IocContainer {
 
     private static final IocContainer instance = new IocContainer();
 
-    private IocContainer(){}
+    private final Map<String, Object> beans = new ConcurrentHashMap<>();
+
+    private IocContainer(){
+        final String packagePath = "dev.sig";
+        Class<?>[] allClasses = ClassUtils.getClasses(packagePath);
+
+        // TODO allClasses 롤링하며 어노테이션별로 새로운 맵객체에 저장
+    }
 
     public static IocContainer getInstance(){
         return instance;
@@ -32,7 +42,7 @@ public class IocContainer {
     }
 
     private enum AnnoPriority {
-        Config(1), Bean(2), Service(3), Client(4), Facade(5), Autowired(6),
+        Config(1), Bean(2), Component(2), Service(3), Client(4), Facade(5), Autowired(6),
         ;
 
         private final int priority;
@@ -74,6 +84,10 @@ public class IocContainer {
 
     private void initAutowired(){
         System.out.println("Called initAutowired");
+    }
+
+    private void initComponent(){
+        System.out.println("Called initComponent");
     }
 
 }

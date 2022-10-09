@@ -1,13 +1,10 @@
 package dev.sig.domain.ui;
 
+import dev.sig.framework.annotation.Component;
+
+@Component(permanent = false)
 public class Header {
 
-    private static final Header INSTANCE = new Header();
-
     private Header(){}
-
-    public static Header getInstance(){
-        return INSTANCE;
-    }
 
 }
