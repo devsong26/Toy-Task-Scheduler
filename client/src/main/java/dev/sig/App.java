@@ -1,11 +1,19 @@
 package dev.sig;
 
-import dev.sig.domain.ui.Container;
+import dev.sig.framework.container.IocContainer;
 
 public class App {
 
     public static void main(String[] args){
-        Container.getInstance().render();
+        init();
+        run();
+    }
+
+    private static void init() {
+        IocContainer.getInstance().init();
+    }
+
+    private static void run() {
     }
 
 }
